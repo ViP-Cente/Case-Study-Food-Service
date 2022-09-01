@@ -1,4 +1,4 @@
-package com.ascend.springbase;
+package com.ascend.CaseStudy;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
