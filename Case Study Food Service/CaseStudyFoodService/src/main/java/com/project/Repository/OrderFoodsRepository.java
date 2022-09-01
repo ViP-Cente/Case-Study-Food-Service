@@ -1,4 +1,4 @@
 package com.project.Repository;
 
-public class OrderFoodsRepository {
+public interface OrderFoodsRepository {
 }
