@@ -20,6 +20,7 @@ public class OrderController {
 	public String hello() {
 		return "Hello world";
 	}
+
     @GetMapping("orderList")
     public ResponseEntity<?> getAllOrders(){
         return new ResponseEntity<List<Order>>((List<Order>)orderService.listAllOrders(), HttpStatus.OK);

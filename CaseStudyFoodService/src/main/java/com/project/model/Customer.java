@@ -11,8 +11,8 @@ public class Customer {
 
 	@Id
 	Integer customerID;
-	String customerFirstName;
-	String customerLastName;
+	String customer_first_name;
+	String customer_last_name;
 	String paymentMethod;
 	Integer tableID;
 
@@ -20,12 +20,12 @@ public class Customer {
 
 	}
 
-	public Customer(Integer customerID, String customerFirstName, String customerLastName, String paymentMethod,
-			Integer tableID) {
+	public Customer(Integer customerID, String customer_first_name, String customerLastName, String paymentMethod,
+					Integer tableID) {
 		super();
 		this.customerID = customerID;
-		this.customerFirstName = customerFirstName;
-		this.customerLastName = customerLastName;
+		this.customer_first_name = customer_first_name;
+		this.customer_last_name = customerLastName;
 		this.paymentMethod = paymentMethod;
 		this.tableID = tableID;
 	}
@@ -38,20 +38,20 @@ public class Customer {
 		this.customerID = customerID;
 	}
 
-	public String getCustomerFirstName() {
-		return customerFirstName;
+	public String getCustomer_first_name() {
+		return customer_first_name;
 	}
 
-	public void setCustomerFirstName(String customerFirstName) {
-		this.customerFirstName = customerFirstName;
+	public void setCustomer_first_name(String customer_first_name) {
+		this.customer_first_name = customer_first_name;
 	}
 
-	public String getCustomerLastName() {
-		return customerLastName;
+	public String getCustomer_last_name() {
+		return customer_last_name;
 	}
 
-	public void setCustomerLastName(String customerLastName) {
-		this.customerLastName = customerLastName;
+	public void setCustomer_last_name(String customer_last_name) {
+		this.customer_last_name = customer_last_name;
 	}
 
 	public String getPaymentMethod() {
@@ -72,8 +72,8 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [customerID=" + customerID + ", customerFirstName=" + customerFirstName + ", customerLastName="
-				+ customerLastName + ", paymentMethod=" + paymentMethod + ", tableID=" + tableID + "]";
+		return "Customer [customerID=" + customerID + ", customerFirstName=" + customer_first_name + ", customerLastName="
+				+ customer_last_name + ", paymentMethod=" + paymentMethod + ", tableID=" + tableID + "]";
 	}
 }
 	

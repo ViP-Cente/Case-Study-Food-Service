@@ -5,14 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name="order")
+@Table(name="receipt")
 @Entity
 public class Order {
     @Id
     Integer orderID;
     
     @Column(name = "totalPrice")
-    Float totalPrice;
+    Float total_price;
     
     Integer tableID;
 
@@ -24,12 +24,12 @@ public class Order {
         this.orderID = orderID;
     }
 
-	public float getTotalPrice() {
-		return totalPrice;
+	public float getTotal_price() {
+		return total_price;
 	}
 
-	public void setTotalPrice(float totalPrice) {
-		this.totalPrice = totalPrice;
+	public void setTotal_price(float total_price) {
+		this.total_price = total_price;
 	}
 
 	public int getTableID() {
@@ -44,7 +44,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "orderID=" + orderID +
-                ", totalOrderPrice=" + totalPrice +
+                ", totalOrderPrice=" + total_price +
                 ", tableID=" + tableID +
                 '}';
     }

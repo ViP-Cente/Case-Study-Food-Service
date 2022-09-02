@@ -11,7 +11,7 @@ public class Restaurant_Table {
     @Id
     int tableId;
     int customerId;
-    float totalPrice;
+    float total_price;
 
     public int getTableId() {
         return tableId;
@@ -29,18 +29,18 @@ public class Restaurant_Table {
         this.customerId = customerId;
     }
 
-    public float getTotalPrice() {
-        return totalPrice;
+    public float getTotal_price() {
+        return total_price;
     }
 
-    public void setTotalPrice(float totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setTotal_price(float total_price) {
+        this.total_price = total_price;
     }
 
     @Override
     public String toString() {
         return "Restaurant_Table{" +
-                "tableID=" + tableId + ", customerId=" + customerId + ", totalPrice=" + totalPrice + '}';
+                "tableID=" + tableId + ", customerId=" + customerId + ", totalPrice=" + total_price + '}';
     }
 }
 

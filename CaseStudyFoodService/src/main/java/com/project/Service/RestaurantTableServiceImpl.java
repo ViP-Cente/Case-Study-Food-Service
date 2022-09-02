@@ -40,7 +40,7 @@ public class RestaurantTableServiceImpl implements RestaurantTableService {
             Restaurant_Table newTable = upTable.get();
             newTable.setTableId(t.getTableId());
             newTable.setCustomerId(t.getCustomerId());
-            newTable.setTotalPrice(t.getTotalPrice());
+            newTable.setTotal_price(t.getTotal_price());
 
             tableRepo.save(newTable);
         } else {

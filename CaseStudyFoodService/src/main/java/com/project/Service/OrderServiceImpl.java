@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService{
@@ -54,8 +53,8 @@ public class OrderServiceImpl implements OrderService{
         if(Objects.nonNull(order.getOrderID()) && !"".equals(order1.getOrderID())) {
             order1.setOrderID(order.getOrderID());
         }
-        if(Objects.nonNull(order.getTotalPrice()) && !"".equals(order1.getTotalPrice())) {
-            order1.setTotalPrice(order1.getTotalPrice());
+        if(Objects.nonNull(order.getTotal_price()) && !"".equals(order1.getTotal_price())) {
+            order1.setTotal_price(order1.getTotal_price());
         }
         if(Objects.nonNull(order.getTableID()) && !"".equals(order1.getTableID())) {
             order1.setTableID(order.getTableID());
