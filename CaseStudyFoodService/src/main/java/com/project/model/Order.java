@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Order {
     @Id
     int orderID;
-    float totalOrderPrice;
+    float total_order_price;
     int tableID;
 
     public int getOrderID() {
@@ -22,11 +22,11 @@ public class Order {
     }
 
     public float getTotalOrderPrice() {
-        return totalOrderPrice;
+        return total_order_price;
     }
 
     public void setTotalOrderPrice(float totalOrderPrice) {
-        this.totalOrderPrice = totalOrderPrice;
+        this.total_order_price = totalOrderPrice;
     }
 
     public int getTableID() {
@@ -41,7 +41,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "orderID=" + orderID +
-                ", totalOrderPrice=" + totalOrderPrice +
+                ", totalOrderPrice=" + total_order_price +
                 ", tableID=" + tableID +
                 '}';
     }
