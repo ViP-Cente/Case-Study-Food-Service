@@ -32,10 +32,7 @@ public class OrderFoodsController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(getEmp.get());
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 51aced00dfb2efa61a654b3b220ed7b93bd88902
     @PostMapping("/insertOrderFood")
     public ResponseEntity<OrderFoods> insertOrderFood(@RequestBody OrderFoods of) {
         ofservice.insertOrderFood(of);
