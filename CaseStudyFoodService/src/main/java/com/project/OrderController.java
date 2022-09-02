@@ -1,6 +1,7 @@
 package com.project;
 
 import com.project.Service.OrderService;
+import com.project.model.Customer;
 import com.project.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,10 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
+    @RequestMapping("/hello")
+	public String hello() {
+		return "Hello world";
+	}
     @GetMapping("orderList")
     public ResponseEntity<?> getAllOrders(){
         return new ResponseEntity<List<Order>>((List<Order>)orderService.listAllOrders(), HttpStatus.OK);
@@ -27,7 +32,6 @@ public class OrderController {
         }catch (Exception e){
             return new ResponseEntity<String>("Order not found", HttpStatus.CONFLICT);
         }
-
     }
 
     @PostMapping("addOrder")
