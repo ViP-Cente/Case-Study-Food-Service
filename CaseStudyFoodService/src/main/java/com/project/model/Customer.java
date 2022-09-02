@@ -75,4 +75,5 @@ public class Customer {
 		return "Customer [customerID=" + customerID + ", customerFirstName=" + customerFirstName + ", customerLastName="
 				+ customerLastName + ", paymentMethod=" + paymentMethod + ", tableID=" + tableID + "]";
 	}
+}
 	
