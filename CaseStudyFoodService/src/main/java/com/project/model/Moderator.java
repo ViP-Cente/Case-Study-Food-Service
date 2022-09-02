@@ -53,6 +53,7 @@ public class Moderator {
 	public String toString() {
 		return "Moderator [modID=" + modID + ", username=" + username + ", password=" + password + "]";
 	}
+}
 	
 	
 
