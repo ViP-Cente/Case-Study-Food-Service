@@ -31,7 +31,7 @@ public class OrderFoodsController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
         return ResponseEntity.status(HttpStatus.OK).body(getEmp.get());
-    }gitgit
+    }
 
     @PostMapping("/insertOrderFood")
     public ResponseEntity<OrderFoods> insertOrderFood(@RequestBody OrderFoods of) {
