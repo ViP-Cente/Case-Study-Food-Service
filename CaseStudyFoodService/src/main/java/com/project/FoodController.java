@@ -10,15 +10,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(path = "/food")
 public class FoodController {
     @Autowired
     FoodService foodService;
 
-    @GetMapping("/food/foodList")
+    @GetMapping("foodList")
     public ResponseEntity<List<Food>> listAllFoods(){
         return new ResponseEntity <List<Food>> ((List<Food>) foodService.getAllFoods(), HttpStatus.OK);
     }
-    @GetMapping("/food/findFood/{foodID}")
+    @GetMapping("findFood/{foodID}")
     public ResponseEntity<?> FindByFoodId(@PathVariable int foodID) throws Exception {
         try {
             return new ResponseEntity<Food>(foodService.findByFoodId(foodID), HttpStatus.OK);
@@ -27,7 +28,7 @@ public class FoodController {
         }
     }
 
-    @PostMapping("/food/addFood")
+    @PostMapping("addFood")
     public ResponseEntity<?> addFood(@RequestBody Food food) throws Exception {
         try {
             return new ResponseEntity<Food>(foodService.addFood(food), HttpStatus.OK);
@@ -36,7 +37,7 @@ public class FoodController {
         }
     }
 
-    @PutMapping("/food/updateFood")
+    @PutMapping("updateFood")
     public ResponseEntity<?> updateFood(@RequestBody Food food) throws Exception {
         try {
             return new ResponseEntity<Food>(foodService.updateFood(food), HttpStatus.OK);
@@ -45,7 +46,7 @@ public class FoodController {
         }
     }
 
-    @DeleteMapping("/food/deleteFood/{foodID}")
+    @DeleteMapping("deleteFood/{foodID}")
     public ResponseEntity<?> deleteFood(@PathVariable int foodID) throws Exception {
         try {
             return new ResponseEntity<Boolean>(foodService.deleteFood(foodID), HttpStatus.OK);
@@ -53,7 +54,7 @@ public class FoodController {
             return new ResponseEntity<String>("Food not found", HttpStatus.CONFLICT);
         }
     }
-    @DeleteMapping("/food/deleteAll")
+    @DeleteMapping("deleteAll")
     void deleteAllFoods(){
         foodService.deleteAllFoods();
     }

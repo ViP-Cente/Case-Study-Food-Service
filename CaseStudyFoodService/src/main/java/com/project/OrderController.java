@@ -10,16 +10,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(path = "/order")
 public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @GetMapping("order/orderList")
+    @GetMapping("orderList")
     public ResponseEntity<?> getAllOrders(){
         return new ResponseEntity<List<Order>>((List<Order>)orderService.listAllOrders(), HttpStatus.OK);
 
     }
-    @GetMapping("order/findOrder/{orderID}")
+    @GetMapping("findOrder/{orderID}")
     public ResponseEntity<?> findByOrderId(@PathVariable int orderID) throws Exception {
         try{
             return new ResponseEntity<Order>(orderService.findByOrderId(orderID), HttpStatus.OK);
@@ -29,7 +30,7 @@ public class OrderController {
 
     }
 
-    @PostMapping("order/addOrder")
+    @PostMapping("addOrder")
     public ResponseEntity<?> addOrder(@RequestBody Order order) throws Exception {
         try{
             return new ResponseEntity<Order>(orderService.addOrder(order), HttpStatus.OK);
@@ -39,7 +40,7 @@ public class OrderController {
 
     }
 
-    @PutMapping("order/updateOrder")
+    @PutMapping("updateOrder")
     public ResponseEntity<?> updateOrder(@RequestBody Order order) throws Exception {
         try{
             return new ResponseEntity<Order>(orderService.updateOrder(order), HttpStatus.OK);
@@ -48,7 +49,7 @@ public class OrderController {
         }
     }
 
-    @DeleteMapping("order/deleteOrder/{orderID}")
+    @DeleteMapping("deleteOrder/{orderID}")
     public ResponseEntity<?> deleteOrder(@PathVariable int orderID)throws Exception {
         try{
             return new ResponseEntity<Boolean>(orderService.deleteOrder(orderID), HttpStatus.OK);
@@ -57,7 +58,7 @@ public class OrderController {
         }
     }
 
-    @DeleteMapping("order/deleteAll")
+    @DeleteMapping("deleteAll")
     public void deleteAllOrders(){
         orderService.deleteAllOrders();
     }
