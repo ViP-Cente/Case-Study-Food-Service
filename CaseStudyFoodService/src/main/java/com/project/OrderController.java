@@ -1,21 +1,30 @@
 package com.project;
 
 import com.project.Service.OrderService;
+import com.project.model.Customer;
 import com.project.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping(path = "/order")
 public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @GetMapping("order/orderList")
-    List<Order> getAllOrders(){
-        return orderService.listAllOrders();
+    @RequestMapping("/hello")
+	public String hello() {
+		return "Hello world";
+	}
+    
+    @GetMapping("orderList")
+    ResponseEntity<List<Order>> getAllOrders(){
+    	return new ResponseEntity <List<Order>> ((List<Order>) orderService.listAllOrders(), HttpStatus.OK);
     }
     
     @GetMapping("order/findOrder/{orderID}")
@@ -38,7 +47,7 @@ public class OrderController {
         orderService.deleteOrder(orderID);
     }
 
-    @DeleteMapping("order/deleteAll")
+    @DeleteMapping("deleteAll")
     void deleteAllOrders(){
         orderService.deleteAllOrders();
     }
