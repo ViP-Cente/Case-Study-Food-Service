@@ -8,4 +8,4 @@ import com.project.model.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer>{
-
+}

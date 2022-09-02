@@ -12,4 +12,4 @@ public interface ModeratorService {
 	boolean deleteModeratorById(Integer id) throws Exception;
 	Moderator updateModerator(Integer id, Moderator mod) throws Exception;
 	Moderator createModerator(Moderator mod) throws Exception;
-
+}
