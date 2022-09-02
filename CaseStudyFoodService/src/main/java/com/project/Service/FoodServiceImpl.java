@@ -58,7 +58,7 @@ public class FoodServiceImpl implements FoodService{
         if(Objects.nonNull(food.getPrice()) && !"".equals(food1.getPrice())){
             food1.setPrice(food.getPrice());
         }
-        return food1;
+        return foodRepository.save(food1);
     }
 
     @Override

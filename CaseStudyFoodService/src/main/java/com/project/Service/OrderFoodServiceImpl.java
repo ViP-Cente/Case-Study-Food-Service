@@ -27,7 +27,7 @@ public class OrderFoodServiceImpl implements OrderFoodService{
 
     @Override
     public void insertOrderFood(OrderFoods o) {
-        var insertOrF = ofRepo.findById(o.getOrderId());
+        var insertOrF = ofRepo.findById(o.getOrder_id());
         if(!insertOrF.isPresent()){
             ofRepo.save(o);
         } else {
@@ -41,8 +41,8 @@ public class OrderFoodServiceImpl implements OrderFoodService{
         var upOrF = ofRepo.findById(orderId);
         if (upOrF.isPresent()) {
             OrderFoods  ordF = upOrF.get();
-            ordF.setOrderId(newOrderF.getOrderId());
-            ordF.setFoodId(newOrderF.getFoodId());
+            ordF.setOrder_id(newOrderF.getOrder_id());
+            ordF.setFood_id(newOrderF.getFood_id());
             ordF.setQuantity(newOrderF.getQuantity());
 
             ofRepo.save(ordF);
