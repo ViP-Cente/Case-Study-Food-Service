@@ -1,7 +1,6 @@
 package com.project;
 
 import com.project.Service.OrderService;
-import com.project.model.Moderator;
 import com.project.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,7 @@ public class OrderController {
     @GetMapping("order/orderList")
     public ResponseEntity<?> getAllOrders(){
         return new ResponseEntity<List<Order>>((List<Order>)orderService.listAllOrders(), HttpStatus.OK);
-//        return orderService.listAllOrders();
+
     }
     @GetMapping("order/findOrder/{orderID}")
     public ResponseEntity<?> findByOrderId(@PathVariable int orderID) throws Exception {
@@ -27,7 +26,7 @@ public class OrderController {
         }catch (Exception e){
             return new ResponseEntity<String>("Order not found", HttpStatus.CONFLICT);
         }
-//        return orderService.findByOrderId(orderID);
+
     }
 
     @PostMapping("order/addOrder")
@@ -37,7 +36,7 @@ public class OrderController {
         }catch (Exception e){
             return new ResponseEntity<String>("Order could not be created", HttpStatus.CONFLICT);
         }
-//        return orderService.addOrder(order);
+
     }
 
     @PutMapping("order/updateOrder")
@@ -47,7 +46,6 @@ public class OrderController {
         }catch (Exception e){
             return new ResponseEntity<String>("Order could not be updated", HttpStatus.CONFLICT);
         }
-//        return orderService.updateOrder(order);
     }
 
     @DeleteMapping("order/deleteOrder/{orderID}")
@@ -57,7 +55,6 @@ public class OrderController {
         }catch (Exception e){
             return new ResponseEntity<String>("Order could not be deleted", HttpStatus.CONFLICT);
         }
-//        orderService.deleteOrder(orderID);
     }
 
     @DeleteMapping("order/deleteAll")

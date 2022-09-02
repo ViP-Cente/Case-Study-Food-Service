@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class FoodServiceImpl implements FoodService{
@@ -22,23 +21,33 @@ public class FoodServiceImpl implements FoodService{
     }
 
     @Override
-    public Optional<Food> FindByFoodId(int foodID) {
+    public Food findByFoodId(int foodID)throws Exception {
         if(foodRepository.existsById(foodID)){
-            return foodRepository.findById(foodID);
+            return foodRepository.findById(foodID).get();
         }
         else{
             System.out.println("Food does not exist.");
+            throw new Exception();
         }
-        return null;
     }
 
     @Override
-    public Food addFood(Food food) {
-        return foodRepository.save(food);
+    public Food addFood(Food food) throws Exception {
+        if(!foodRepository.existsById(food.getFoodID())){
+            return foodRepository.save(food);
+
+        }
+        else{
+            throw new Exception();
+        }
+
     }
 
     @Override
-    public Food updatePFood(Food food) {
+    public Food updateFood(Food food) throws Exception {
+        if(foodRepository.findById(food.getFoodID()).isEmpty()){
+            throw new Exception();
+        }
         Food food1 = foodRepository.findById(food.getFoodID()).get();
         if(Objects.nonNull(food.getFoodID()) && !"".equals(food1.getFoodID())){
             food1.setFoodID(food.getFoodID());
@@ -53,13 +62,16 @@ public class FoodServiceImpl implements FoodService{
     }
 
     @Override
-    public void deleteFood(int foodID) {
+    public boolean deleteFood(int foodID) throws Exception {
         if(foodRepository.existsById(foodID)){
             foodRepository.deleteById(foodID);
             System.out.println("Deleted "+ foodID);
+            return true;
         }
         else{
             System.out.println("Food could not be deleted.");
+            throw new Exception();
+
         }
     }
 
