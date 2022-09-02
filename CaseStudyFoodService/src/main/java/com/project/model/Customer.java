@@ -8,18 +8,18 @@ import javax.persistence.Table;
 @Table
 @Entity
 public class Customer {
-	
+
 	@Id
 	Integer customerID;
 	String customerFirstName;
 	String customerLastName;
 	String paymentMethod;
 	Integer tableID;
-	
+
 	public Customer() {
-		
+
 	}
-	
+
 	public Customer(Integer customerID, String customerFirstName, String customerLastName, String paymentMethod,
 			Integer tableID) {
 		super();
@@ -77,4 +77,3 @@ public class Customer {
 	}
 }
 	
-}

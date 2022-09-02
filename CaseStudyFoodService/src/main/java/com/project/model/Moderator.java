@@ -8,14 +8,14 @@ import javax.persistence.Table;
 @Table
 @Entity
 public class Moderator {
-	
+
 	@Id
 	Integer modID;
 	String username;
 	String password;
-	
+
 	public Moderator() {
-		
+
 	}
 
 	public Moderator(Integer modID, String username, String password) {
