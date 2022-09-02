@@ -22,29 +22,34 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public Optional<Order> FindByOrderId(int orderID) {
+    public Order findByOrderId(int orderID) throws Exception {
         if(orderRepository.existsById(orderID)){
-            return orderRepository.findById(orderID);
+            return orderRepository.findById(orderID).get();
         }
         else{
-            System.out.println("Order does not exist.");
+            System.out.println("This order could not be updated.");
+            throw new Exception();
         }
-        return null;
     }
 
     @Override
-    public Order addOrder(Order order) {
+    public Order addOrder(Order order) throws Exception {
         if(!orderRepository.existsById(order.getOrderID())){
             return orderRepository.save(order);
         }
         else{
             System.out.println("This order already exists.");
+            throw new Exception();
         }
-        return order;
+
     }
 
     @Override
-    public Order updateOrder(Order order) {
+    public Order updateOrder(Order order) throws Exception {
+        if(orderRepository.findById(order.getOrderID()).isEmpty()){
+            System.out.println("This does not order exist.");
+            throw new Exception();
+        }
         Order order1 = orderRepository.findById(order.getOrderID()).get();
         if(Objects.nonNull(order.getOrderID()) && !"".equals(order1.getOrderID())) {
             order1.setOrderID(order.getOrderID());
@@ -60,13 +65,15 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public void deleteOrder(int orderID) {
+    public boolean deleteOrder(int orderID) throws Exception {
         if(orderRepository.existsById(orderID)){
             orderRepository.deleteById(orderID);
             System.out.println("Deleted "+ orderID);
+            return true;
         }
         else{
             System.out.println("Order could not be deleted.");
+            throw new Exception();
         }
     }
 

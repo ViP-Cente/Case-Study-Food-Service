@@ -1,12 +1,14 @@
 package com.project;
 
 import com.project.Service.OrderService;
+import com.project.model.Moderator;
 import com.project.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class OrderController {
@@ -14,31 +16,52 @@ public class OrderController {
     OrderService orderService;
 
     @GetMapping("order/orderList")
-    List<Order> getAllOrders(){
-        return orderService.listAllOrders();
+    public ResponseEntity<?> getAllOrders(){
+        return new ResponseEntity<List<Order>>((List<Order>)orderService.listAllOrders(), HttpStatus.OK);
+//        return orderService.listAllOrders();
     }
     @GetMapping("order/findOrder/{orderID}")
-    Optional<Order> FindByOrderId(@PathVariable int orderID){
-        return orderService.FindByOrderId(orderID);
+    public ResponseEntity<?> findByOrderId(@PathVariable int orderID) throws Exception {
+        try{
+            return new ResponseEntity<Order>(orderService.findByOrderId(orderID), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<String>("Order not found", HttpStatus.CONFLICT);
+        }
+//        return orderService.findByOrderId(orderID);
     }
 
     @PostMapping("order/addOrder")
-    Order addOrder(@RequestBody Order order){
-        return orderService.addOrder(order);
+    public ResponseEntity<?> addOrder(@RequestBody Order order) throws Exception {
+        try{
+            return new ResponseEntity<Order>(orderService.addOrder(order), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<String>("Order could not be created", HttpStatus.CONFLICT);
+        }
+//        return orderService.addOrder(order);
     }
 
     @PutMapping("order/updateOrder")
-    Order updateOrder(@RequestBody Order order){
-        return orderService.updateOrder(order);
+    public ResponseEntity<?> updateOrder(@RequestBody Order order) throws Exception {
+        try{
+            return new ResponseEntity<Order>(orderService.updateOrder(order), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<String>("Order could not be updated", HttpStatus.CONFLICT);
+        }
+//        return orderService.updateOrder(order);
     }
 
     @DeleteMapping("order/deleteOrder/{orderID}")
-    void deleteOrder(@PathVariable int orderID){
-        orderService.deleteOrder(orderID);
+    public ResponseEntity<?> deleteOrder(@PathVariable int orderID)throws Exception {
+        try{
+            return new ResponseEntity<Boolean>(orderService.deleteOrder(orderID), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<String>("Order could not be deleted", HttpStatus.CONFLICT);
+        }
+//        orderService.deleteOrder(orderID);
     }
 
     @DeleteMapping("order/deleteAll")
-    void deleteAllOrders(){
+    public void deleteAllOrders(){
         orderService.deleteAllOrders();
     }
 }
