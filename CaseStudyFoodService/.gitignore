@@ -14,7 +14,7 @@ target/
 .sts4-cache
 springbase.iml
 application
-src/main/resources/applications.properties
+applications.properties
 ### IntelliJ IDEA ###
 .idea
 *.iws
