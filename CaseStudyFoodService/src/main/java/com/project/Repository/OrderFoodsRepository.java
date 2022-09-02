@@ -1,4 +1,7 @@
 package com.project.Repository;
 
-public class OrderFoodsRepository {
+import com.project.model.OrderFoods;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface OrderFoodsRepository extends JpaRepository<OrderFoods, Integer> {
 }
