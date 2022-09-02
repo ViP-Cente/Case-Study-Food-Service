@@ -54,7 +54,7 @@ public class OrderServiceImpl implements OrderService{
             order1.setOrderID(order.getOrderID());
         }
         if(Objects.nonNull(order.getTotal_price()) && !"".equals(order1.getTotal_price())) {
-            order1.setTotal_price(order1.getTotal_price());
+            order1.setTotal_price(order.getTotal_price());
         }
         if(Objects.nonNull(order.getTableID()) && !"".equals(order1.getTableID())) {
             order1.setTableID(order.getTableID());
