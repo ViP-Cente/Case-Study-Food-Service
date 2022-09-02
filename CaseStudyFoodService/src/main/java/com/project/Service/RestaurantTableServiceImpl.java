@@ -39,7 +39,6 @@ public class RestaurantTableServiceImpl implements RestaurantTableService {
         if (upTable.isPresent()) {
             Restaurant_Table newTable = upTable.get();
             newTable.setTableId(t.getTableId());
-            newTable.setCustomerId(t.getCustomerId());
             newTable.setTotalPrice(t.getTotalPrice());
 
             tableRepo.save(newTable);
