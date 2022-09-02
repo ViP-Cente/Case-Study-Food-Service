@@ -3,12 +3,10 @@ package com.project.Service;
 import com.project.Repository.OrderFoodsRepository;
 import com.project.model.OrderFoods;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public class OrderFoodServiceImpl implements OrderFoodService{
 
     @Autowired
@@ -30,7 +28,7 @@ public class OrderFoodServiceImpl implements OrderFoodService{
         var insertOrF = ofRepo.findById(o.getOrderId());
         if(!insertOrF.isPresent()){
             ofRepo.save(o);
-        } else {
+        } else {git
             System.out.println("Food order already exists. Entity not added");
         }
 

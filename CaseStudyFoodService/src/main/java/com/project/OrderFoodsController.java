@@ -14,19 +14,19 @@ import java.util.Optional;
 public class OrderFoodsController {
 
     @Autowired
-    OrderFoodService oService;
+    OrderFoodService ofservice;
 
     @RequestMapping("/getAllOrderFoods")
     @ResponseBody
     public List<OrderFoods> getAllOrderFoods(){
-        List<OrderFoods> sList = oService.getAllOrderFoods();
+        List<OrderFoods> sList = ofservice.getAllOrderFoods();
         return sList;
     }
 
     @RequestMapping("/getOrderFood/{orderId}")
     @ResponseBody
-    public ResponseEntity<OrderFoods> getOrderFood(@PathVariable("orderId") Integer orderId) throws Exception{
-        Optional<OrderFoods> getEmp = oService.getOrderFood(orderId);
+    public ResponseEntity<OrderFoods> getOrderFood(@PathVariable("orderId") Integer orderId) {
+        Optional<OrderFoods> getEmp = ofservice.getOrderFood(orderId);
         if(getEmp.isEmpty()){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
@@ -35,22 +35,22 @@ public class OrderFoodsController {
 
     @PostMapping("/insertOrderFood")
     public ResponseEntity<OrderFoods> insertOrderFood(@RequestBody OrderFoods of) {
-        oService.insertOrderFood(of);
+        ofservice.insertOrderFood(of);
         return new ResponseEntity("Inserted orderFood: " + of, HttpStatus.OK);
     }
 
 
     @PutMapping("/updateOrderFood/{orderId}")
     public ResponseEntity<OrderFoods> updateOrderFood(@RequestBody OrderFoods of, @PathVariable("orderId") Integer orderId) {
-        oService.updateOrderFood(orderId, of);
+        ofservice.updateOrderFood(orderId, of);
         return new ResponseEntity("Updated orderFood: " + of, HttpStatus.OK);
     }
 
     @DeleteMapping("/{orderId}")
     public ResponseEntity<String> deleteOrderFood(@PathVariable("orderId") Integer orderId) {
-        Optional<OrderFoods> delOrderFood = oService.getOrderFood(orderId);
+        Optional<OrderFoods> delOrderFood = ofservice.getOrderFood(orderId);
         if(delOrderFood.isPresent()){
-            oService.deleteOrderFood(delOrderFood.get().getOrderId());
+            ofservice.deleteOrderFood(delOrderFood.get().getOrderId());
             return ResponseEntity.status(HttpStatus.OK).body("Deleted OrderFood");
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
@@ -59,7 +59,7 @@ public class OrderFoodsController {
 
     @DeleteMapping("/deleteAllOrderFood")
     public String deleteAllOrderFood() {
-        oService.deleteAllOrderFood();
+        ofservice.deleteAllOrderFood();
         return "Deleted all ordered foods";
     }
 }

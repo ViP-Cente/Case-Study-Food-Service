@@ -12,6 +12,8 @@ public class RestaurantTable {
     @Id
     int tableId;
     float total_Price;
+    int customerId;
+    float totalPrice;
 
     public int getTableId() {
         return tableId;
@@ -19,6 +21,14 @@ public class RestaurantTable {
 
     public void setTableId(int tableId) {
         this.tableId = tableId;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public float getTotalPrice() {
@@ -33,6 +43,7 @@ public class RestaurantTable {
     public String toString() {
         return "Restaurant_Table{" +
                 "tableID=" + tableId + ", totalPrice=" + total_Price + '}';
+
     }
 }
 
