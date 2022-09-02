@@ -9,7 +9,7 @@ import javax.persistence.Table;
 public class Food {
     @Id
     int foodID;
-    String foodName;
+    String food_name;
     float price;
     int orderID;
 
@@ -21,12 +21,12 @@ public class Food {
         this.foodID = foodID;
     }
 
-    public String getFoodName() {
-        return foodName;
+    public String getFood_name() {
+        return food_name;
     }
 
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
+    public void setFood_name(String food_name) {
+        this.food_name = food_name;
     }
 
     public float getPrice() {
@@ -49,7 +49,7 @@ public class Food {
     public String toString() {
         return "Food{" +
                 "foodID=" + foodID +
-                ", foodName='" + foodName + '\'' +
+                ", foodName='" + food_name + '\'' +
                 ", price=" + price +
                 ", orderID=" + orderID +
                 '}';

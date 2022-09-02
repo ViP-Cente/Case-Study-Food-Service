@@ -43,8 +43,8 @@ public class FoodServiceImpl implements FoodService{
         if(Objects.nonNull(food.getFoodID()) && !"".equals(food1.getFoodID())){
             food1.setFoodID(food.getFoodID());
         }
-        if(Objects.nonNull(food.getFoodName()) && !"".equals(food1.getFoodName())){
-            food1.setFoodName(food.getFoodName());
+        if(Objects.nonNull(food.getFood_name()) && !"".equals(food1.getFood_name())){
+            food1.setFood_name(food.getFood_name());
         }
         if(Objects.nonNull(food.getPrice()) && !"".equals(food1.getPrice())){
             food1.setPrice(food.getPrice());

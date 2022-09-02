@@ -25,7 +25,7 @@ public class OrderFoodsController {
 
     @RequestMapping("/getOrderFood/{orderId}")
     @ResponseBody
-    public ResponseEntity<OrderFoods> getOrderFood(@PathVariable("orderId") Integer orderId) {
+    public ResponseEntity<OrderFoods> getOrderFood(@PathVariable("orderId") Integer orderId) throws Exception{
         Optional<OrderFoods> getEmp = oService.getOrderFood(orderId);
         if(getEmp.isEmpty()){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);

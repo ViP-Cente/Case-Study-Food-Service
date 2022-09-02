@@ -1,17 +1,21 @@
 package com.project.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name="order")
+@Table(name="receipt")
 @Entity
 
 public class Order {
     @Id
     int orderID;
-    float total_order_price;
-    int tableID;
+
+    @Column(name = "totalPrice")
+    Float total_price;
+
+    Integer tableID;
 
     public int getOrderID() {
         return orderID;
@@ -22,11 +26,11 @@ public class Order {
     }
 
     public float getTotalOrderPrice() {
-        return total_order_price;
+        return total_price;
     }
 
     public void setTotalOrderPrice(float totalOrderPrice) {
-        this.total_order_price = totalOrderPrice;
+        this.total_price = totalOrderPrice;
     }
 
     public int getTableID() {
@@ -41,7 +45,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "orderID=" + orderID +
-                ", totalOrderPrice=" + total_order_price +
+                ", totalOrderPrice=" + total_price +
                 ", tableID=" + tableID +
                 '}';
     }

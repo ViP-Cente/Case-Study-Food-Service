@@ -1,16 +1,17 @@
 package com.project.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name="restaurant_table")
 @Entity
-public class Restaurant_Table {
+public class RestaurantTable {
 
     @Id
     int tableId;
-    float totalPrice;
+    float total_Price;
 
     public int getTableId() {
         return tableId;
@@ -21,17 +22,17 @@ public class Restaurant_Table {
     }
 
     public float getTotalPrice() {
-        return totalPrice;
+        return total_Price;
     }
 
     public void setTotalPrice(float totalPrice) {
-        this.totalPrice = totalPrice;
+        this.total_Price = totalPrice;
     }
 
     @Override
     public String toString() {
         return "Restaurant_Table{" +
-                "tableID=" + tableId + ", totalPrice=" + totalPrice + '}';
+                "tableID=" + tableId + ", totalPrice=" + total_Price + '}';
     }
 }
 

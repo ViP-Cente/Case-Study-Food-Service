@@ -4,8 +4,9 @@ package com.project.Service;
 import java.util.List;
 
 import com.project.model.Moderator;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public interface ModeratorService {
 	List<Moderator> getAll();
 	Moderator getModeratorById(Integer id) throws Exception;
