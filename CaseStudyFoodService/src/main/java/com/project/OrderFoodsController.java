@@ -11,20 +11,19 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping(path = "/orderFoods")
 public class OrderFoodsController {
 
     @Autowired
     OrderFoodService ofservice;
 
     @RequestMapping("/getAllOrderFoods")
-    @ResponseBody
     public List<OrderFoods> getAllOrderFoods(){
         List<OrderFoods> sList = ofservice.getAllOrderFoods();
         return sList;
     }
 
     @RequestMapping("/getOrderFood/{orderId}")
-    @ResponseBody
     public ResponseEntity<OrderFoods> getOrderFood(@PathVariable("orderId") Integer orderId) {
         Optional<OrderFoods> getEmp = ofservice.getOrderFood(orderId);
         if(getEmp.isEmpty()){
