@@ -60,4 +60,4 @@ public class ModeratorServiceImpl implements ModeratorService{
 		Moderator saved = repo.save(mod);
 		return saved;
 	}
-}
+
