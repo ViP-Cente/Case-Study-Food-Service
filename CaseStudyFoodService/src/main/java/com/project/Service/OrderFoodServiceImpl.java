@@ -28,7 +28,7 @@ public class OrderFoodServiceImpl implements OrderFoodService{
         var insertOrF = ofRepo.findById(o.getOrderId());
         if(!insertOrF.isPresent()){
             ofRepo.save(o);
-        } else {git
+        } else {
             System.out.println("Food order already exists. Entity not added");
         }
 
