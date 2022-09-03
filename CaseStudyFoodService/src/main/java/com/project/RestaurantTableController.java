@@ -1,7 +1,7 @@
 package com.project;
 
 import com.project.Service.RestaurantTableService;
-import com.project.model.RestaurantTable;
+import com.project.model.Restaurant_Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,15 +18,15 @@ public class RestaurantTableController {
 
     @RequestMapping("/getAllTables")
     @ResponseBody
-    public List<RestaurantTable> getAllTables(){
-        List<RestaurantTable> tableList = tableService.getAllTables();
+    public List<Restaurant_Table> getAllTables(){
+        List<Restaurant_Table> tableList = tableService.getAllTables();
         return tableList;
     }
 
     @RequestMapping("/getTable/{tableId}")
     @ResponseBody
-    public ResponseEntity<RestaurantTable> getTable(@PathVariable("tableId") Integer tableId) {
-        Optional<RestaurantTable> getTable = tableService.getTable(tableId);
+    public ResponseEntity<Restaurant_Table> getTable(@PathVariable("tableId") Integer tableId) {
+        Optional<Restaurant_Table> getTable = tableService.getTable(tableId);
         if(getTable.isEmpty()){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
@@ -34,21 +34,21 @@ public class RestaurantTableController {
     }
 
     @PostMapping("/insertTable")
-    public ResponseEntity<RestaurantTable> insertTable(@RequestBody RestaurantTable t) {
+    public ResponseEntity<Restaurant_Table> insertTable(@RequestBody Restaurant_Table t) {
         tableService.insertTable(t);
         return new ResponseEntity("Inserted new entity: " + t, HttpStatus.OK);
     }
 
 
     @PutMapping("/updateTable/{tableId}")
-    public ResponseEntity<RestaurantTable> updateTable(@RequestBody RestaurantTable t, @PathVariable("tableId") Integer tableId) {
+    public ResponseEntity<Restaurant_Table> updateTable(@RequestBody Restaurant_Table t, @PathVariable("tableId") Integer tableId) {
         tableService.updateTable(t, tableId);
         return new ResponseEntity("Table has been updated: " + t, HttpStatus.OK);
     }
 
     @DeleteMapping("/{tableId}")
     public ResponseEntity<String> deleteTable(@PathVariable("tableId") Integer tableId) {
-        Optional<RestaurantTable> deleteTable = tableService.getTable(tableId);
+        Optional<Restaurant_Table> deleteTable = tableService.getTable(tableId);
         if(deleteTable.isPresent()){
             tableService.deleteTable(deleteTable.get().getTableId());
             return ResponseEntity.status(HttpStatus.OK).body("Table has been deleted");

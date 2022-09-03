@@ -1,7 +1,7 @@
 package com.project.Service;
 
 import com.project.Repository.RestaurantTableRepository;
-import com.project.model.RestaurantTable;
+import com.project.model.Restaurant_Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,18 +14,18 @@ public class RestaurantTableServiceImpl implements RestaurantTableService {
     private RestaurantTableRepository tableRepo;
 
     @Override
-    public List<RestaurantTable> getAllTables() {
-        List<RestaurantTable> tableList = tableRepo.findAll();
+    public List<Restaurant_Table> getAllTables() {
+        List<Restaurant_Table> tableList = tableRepo.findAll();
         return tableList;
     }
 
     @Override
-    public Optional<RestaurantTable> getTable(int tableId) {
+    public Optional<Restaurant_Table> getTable(int tableId) {
         return tableRepo.findById(tableId);
     }
 
     @Override
-    public void insertTable(RestaurantTable t) {
+    public void insertTable(Restaurant_Table t) {
         var insertEmp = tableRepo.findById(t.getTableId());
         if(!insertEmp.isPresent()){
             tableRepo.save(t);
@@ -34,13 +34,13 @@ public class RestaurantTableServiceImpl implements RestaurantTableService {
     }
 
     @Override
-    public void updateTable(RestaurantTable t, int tableId) {
+    public void updateTable(Restaurant_Table t, int tableId) {
         var upTable = tableRepo.findById(tableId);
         if (upTable.isPresent()) {
-            RestaurantTable newTable = upTable.get();
+            Restaurant_Table newTable = upTable.get();
             newTable.setTableId(t.getTableId());
             newTable.setCustomerId(t.getCustomerId());
-            newTable.setTotalPrice(t.getTotalPrice());
+            newTable.setTotal_price(t.getTotal_price());
 
             tableRepo.save(newTable);
         } else {
