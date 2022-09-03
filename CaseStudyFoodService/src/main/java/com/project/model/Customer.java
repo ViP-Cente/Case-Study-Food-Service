@@ -13,20 +13,21 @@ public class Customer {
 	Integer customerID;
 	String customer_first_name;
 	String customer_last_name;
-	String paymentMethod;
+	String payment_method;
+
 	Integer tableID;
 
 	public Customer() {
 
 	}
 
-	public Customer(Integer customerID, String customer_first_name, String customer_last_name, String paymentMethod,
+	public Customer(Integer customerID, String customer_first_name, String customerLastName, String paymentMethod,
 					Integer tableID) {
 		super();
 		this.customerID = customerID;
 		this.customer_first_name = customer_first_name;
-		this.customer_last_name = customer_last_name;
-		this.paymentMethod = paymentMethod;
+		this.customer_last_name = customerLastName;
+		this.payment_method = paymentMethod;
 		this.tableID = tableID;
 	}
 
@@ -54,12 +55,12 @@ public class Customer {
 		this.customer_last_name = customer_last_name;
 	}
 
-	public String getPaymentMethod() {
-		return paymentMethod;
+	public String getPayment_method() {
+		return payment_method;
 	}
 
-	public void setPaymentMethod(String paymentMethod) {
-		this.paymentMethod = paymentMethod;
+	public void setPayment_method(String payment_method) {
+		this.payment_method = payment_method;
 	}
 
 	public Integer getTableID() {
@@ -73,7 +74,7 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [customerID=" + customerID + ", customerFirstName=" + customer_first_name + ", customerLastName="
-				+ customer_last_name + ", paymentMethod=" + paymentMethod + ", tableID=" + tableID + "]";
+				+ customer_last_name + ", paymentMethod=" + payment_method + ", tableID=" + tableID + "]";
 	}
 }
 	

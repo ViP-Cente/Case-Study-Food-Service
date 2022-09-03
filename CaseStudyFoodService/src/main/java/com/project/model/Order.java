@@ -7,11 +7,10 @@ import javax.persistence.Table;
 
 @Table(name="receipt")
 @Entity
-
 public class Order {
     @Id
-    int orderID;
-
+    Integer orderID;
+    
     @Column(name = "totalPrice")
     Float total_price;
 
@@ -25,15 +24,16 @@ public class Order {
         this.orderID = orderID;
     }
 
-    public float getTotalOrderPrice() {
-        return total_price;
-    }
+	public float getTotal_price() {
+		return total_price;
+	}
 
-    public void setTotalOrderPrice(float totalOrderPrice) {
-        this.total_price = totalOrderPrice;
-    }
+	public void setTotal_price(float total_price) {
+		this.total_price = total_price;
+	}
 
-    public int getTableID() {
+
+	public int getTableID() {
         return tableID;
     }
 
