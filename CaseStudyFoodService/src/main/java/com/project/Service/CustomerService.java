@@ -4,9 +4,7 @@ package com.project.Service;
 import java.util.List;
 
 import com.project.model.Customer;
-import org.springframework.stereotype.Service;
 
-@Service
 public interface CustomerService {
 	List<Customer> getAll();
 	Customer getCustomerById(Integer id) throws Exception;
