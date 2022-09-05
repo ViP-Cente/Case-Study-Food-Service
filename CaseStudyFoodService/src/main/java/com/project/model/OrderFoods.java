@@ -9,24 +9,24 @@ import javax.persistence.Table;
 public class OrderFoods {
 
     @Id
-    int orderId;
-    int foodId;
+    int order_id;
+    int food_id;
     int quantity;
 
-    public int getOrderId() {
-        return orderId;
+    public int getOrder_id() {
+        return order_id;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
     }
 
-    public int getFoodId() {
-        return foodId;
+    public int getFood_id() {
+        return food_id;
     }
 
-    public void setFoodId(int foodId) {
-        this.foodId = foodId;
+    public void setFood_id(int food_id) {
+        this.food_id = food_id;
     }
 
     public int getQuantity() {
@@ -40,6 +40,6 @@ public class OrderFoods {
     @Override
     public String toString() {
         return "OrderFoods{" +
-                "orderId=" + orderId + ", foodId=" + foodId + ", quantity=" + quantity + '}';
+                "orderId=" + order_id + ", foodId=" + food_id + ", quantity=" + quantity + '}';
     }
 }
