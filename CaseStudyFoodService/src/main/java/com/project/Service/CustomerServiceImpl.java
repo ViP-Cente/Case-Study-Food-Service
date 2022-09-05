@@ -14,7 +14,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Autowired
 	CustomerRepository repo;
-
+	
 	@Override
 	public List<Customer> getAll() {
 		List<Customer> cList= repo.findAll();
@@ -61,6 +61,6 @@ public class CustomerServiceImpl implements CustomerService{
 		Customer saved = repo.save(customer);
 		return saved;
 	}
-
-
+	
+	
 }

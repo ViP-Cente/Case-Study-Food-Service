@@ -13,7 +13,7 @@ public class Order {
     
     @Column(name = "totalPrice")
     Float total_price;
-
+    
     Integer tableID;
 
     public int getOrderID() {
@@ -31,7 +31,6 @@ public class Order {
 	public void setTotal_price(float total_price) {
 		this.total_price = total_price;
 	}
-
 
 	public int getTableID() {
         return tableID;
