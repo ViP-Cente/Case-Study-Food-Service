@@ -20,20 +20,20 @@ import com.project.model.Customer;
 @RestController
 @RequestMapping(path = "/customers")
 public class CustomerController {
-	
+
 	@Autowired
 	CustomerService service;
-	
-	@RequestMapping("/hello")
-	public String hello() {
-		return "Hello world";
+
+	@GetMapping("/")
+	public String home() {
+		return("<h1>Welcome</h1>");
 	}
-	
+
 	@GetMapping("/show")
 	public ResponseEntity<List<Customer>> getAllCustomers(){
 		return new ResponseEntity <List<Customer>> ((List<Customer>) service.getAll(), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/getCustomer/{id}")
 	public ResponseEntity<?> getDepartmentById(@PathVariable Integer id) throws Exception{
 		try {
@@ -42,7 +42,7 @@ public class CustomerController {
 			return new ResponseEntity<String>("Customer not found", HttpStatus.CONFLICT);
 		}
 	}
-	
+
 	@DeleteMapping("/deleteCustomer/{id}")
 	public ResponseEntity<?> deleteDepartmentById(@PathVariable Integer id) throws Exception{
 		try {
@@ -51,7 +51,7 @@ public class CustomerController {
 			return new ResponseEntity<String>("Customer not found", HttpStatus.CONFLICT);
 		}
 	}
-	
+
 	@PostMapping("/createCustomer")
 	public ResponseEntity<?> createCustomer(@RequestBody Customer cust) throws Exception{
 		try {
@@ -60,7 +60,7 @@ public class CustomerController {
 			return new ResponseEntity<String>("Customer not found", HttpStatus.CONFLICT);
 		}
 	}
-	
+
 	@PutMapping("/updateCustomer/{id}")
 	public ResponseEntity<?> updateDepartment(@PathVariable Integer id, @RequestBody Customer cust) throws Exception{
 		try {

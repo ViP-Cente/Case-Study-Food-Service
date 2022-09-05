@@ -14,6 +14,7 @@ public class Customer {
 	String customer_first_name;
 	String customer_last_name;
 	String payment_method;
+
 	Integer tableID;
 
 	public Customer() {

@@ -1,5 +1,6 @@
 package com.project.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,8 +10,8 @@ import javax.persistence.Table;
 public class Restaurant_Table {
 
     @Id
+    @Column(name="tableId")
     int tableId;
-    int customerId;
     float total_price;
 
     public int getTableId() {
@@ -19,14 +20,6 @@ public class Restaurant_Table {
 
     public void setTableId(int tableId) {
         this.tableId = tableId;
-    }
-
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
     }
 
     public float getTotal_price() {
@@ -40,7 +33,8 @@ public class Restaurant_Table {
     @Override
     public String toString() {
         return "Restaurant_Table{" +
-                "tableID=" + tableId + ", customerId=" + customerId + ", totalPrice=" + total_price + '}';
+                "tableID=" + tableId + ", totalPrice=" + total_price + '}';
+
     }
 }
 
