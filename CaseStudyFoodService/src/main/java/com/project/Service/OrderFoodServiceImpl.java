@@ -2,6 +2,8 @@ package com.project.Service;
 
 import com.project.Repository.OrderFoodsRepository;
 import com.project.model.OrderFoods;
+import com.project.model.OrderFoodsID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,24 +23,25 @@ public class OrderFoodServiceImpl implements OrderFoodService {
     }
 
     @Override
-    public Optional<OrderFoods> getOrderFood(int orderId) {
-        return ofRepo.findById(orderId);
+    public Optional<OrderFoods> getOrderFood(Integer orderId, Integer foodId) {
+        return ofRepo.findById(new OrderFoodsID(orderId, foodId));
     }
 
     @Override
-    public void insertOrderFood(OrderFoods o) {
-        var insertOrF = ofRepo.findById(o.getOrder_id());
+    public void insertOrderFood(OrderFoods o) throws Exception {
+    	OrderFoodsID ofID = new OrderFoodsID(o.getOrder_id(),o.getFood_id());
+        Optional<OrderFoods> insertOrF = ofRepo.findById(ofID);
         if (!insertOrF.isPresent()) {
             ofRepo.save(o);
         } else {
-            System.out.println("Food order already exists. Entity not added");
+            throw new Exception();
         }
 
     }
 
     @Override
-    public void updateOrderFood(int orderId, OrderFoods newOrderF) {
-        var upOrF = ofRepo.findById(orderId);
+    public void updateOrderFood(Integer orderId, Integer foodId, OrderFoods newOrderF) throws Exception {
+        Optional<OrderFoods> upOrF = ofRepo.findById(new OrderFoodsID(orderId, foodId));
         if (upOrF.isPresent()) {
             OrderFoods ordF = upOrF.get();
             ordF.setOrder_id(newOrderF.getOrder_id());
@@ -47,14 +50,14 @@ public class OrderFoodServiceImpl implements OrderFoodService {
 
             ofRepo.save(ordF);
         } else {
-            System.out.println("orderId cannot be found. Cannot be updated");
+           throw new Exception();
         }
 
     }
 
     @Override
-    public void deleteOrderFood(int orderId) {
-        ofRepo.deleteById(orderId);
+    public void deleteOrderFood(Integer orderId, Integer foodId) {
+        ofRepo.deleteById(new OrderFoodsID(orderId, foodId));
         System.out.println("Food ordered has been deleted");
     }
 

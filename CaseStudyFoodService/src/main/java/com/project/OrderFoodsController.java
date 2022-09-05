@@ -14,51 +14,68 @@ import java.util.Optional;
 @RequestMapping(path = "/orderFoods")
 public class OrderFoodsController {
 
-    @Autowired
-    OrderFoodService ofservice;
+	@Autowired
+	OrderFoodService ofservice;
 
-    @RequestMapping("getAllOrderFoods")
-    public List<OrderFoods> getAllOrderFoods(){
-        List<OrderFoods> sList = ofservice.getAllOrderFoods();
-        return sList;
-    }
+	@RequestMapping("getAllOrderFoods")
+	public List<OrderFoods> getAllOrderFoods() {
+		List<OrderFoods> sList = ofservice.getAllOrderFoods();
+		System.out.println(sList);
+		return sList;
+	}
 
-    @RequestMapping("getOrderFood/{orderId}")
-    public ResponseEntity<OrderFoods> getOrderFood(@PathVariable("orderId") Integer orderId) {
-        Optional<OrderFoods> getEmp = ofservice.getOrderFood(orderId);
-        if(getEmp.isEmpty()){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(getEmp.get());
-    }
+	@RequestMapping("getOrderFood/{orderId}/{foodId}")
+	public ResponseEntity<?> getOrderFood(@PathVariable("orderId") Integer orderId, @PathVariable Integer foodId) {
+		Optional<OrderFoods> getEmp;
+		try {
+			getEmp = ofservice.getOrderFood(orderId, foodId);
+			return ResponseEntity.status(HttpStatus.OK).body(getEmp.get());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return new ResponseEntity<String>("OrderFood not found", HttpStatus.CONFLICT);
+		}
 
-    @PostMapping("insertOrderFood")
-    public ResponseEntity<OrderFoods> insertOrderFood(@RequestBody OrderFoods of) {
-        ofservice.insertOrderFood(of);
-        return new ResponseEntity("Inserted orderFood: " + of, HttpStatus.OK);
-    }
+	}
 
+	@PostMapping("insertOrderFood")
+	public ResponseEntity<OrderFoods> insertOrderFood(@RequestBody OrderFoods of) {
+		try {
+			ofservice.insertOrderFood(of);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new ResponseEntity("Inserted orderFood: " + of, HttpStatus.OK);
+	}
 
-    @PutMapping("updateOrderFood/{orderId}")
-    public ResponseEntity<OrderFoods> updateOrderFood(@RequestBody OrderFoods of, @PathVariable("orderId") Integer orderId) {
-        ofservice.updateOrderFood(orderId, of);
-        return new ResponseEntity("Updated orderFood: " + of, HttpStatus.OK);
-    }
+	@PutMapping("updateOrderFood/{orderId}/{foodId}")
+	public ResponseEntity<?> updateOrderFood(@RequestBody OrderFoods of, @PathVariable("orderId") Integer orderId,
+			@PathVariable Integer foodId) {
+		try {
+			ofservice.updateOrderFood(orderId, foodId, of);
+			return new ResponseEntity("Updated orderFood: " + of, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return new ResponseEntity<String>("OrderFood not found", HttpStatus.CONFLICT);
+		}
 
-    @DeleteMapping("{orderId}")
-    public ResponseEntity<String> deleteOrderFood(@PathVariable("orderId") Integer orderId) {
-        Optional<OrderFoods> delOrderFood = ofservice.getOrderFood(orderId);
-        if(delOrderFood.isPresent()){
-            ofservice.deleteOrderFood(delOrderFood.get().getOrder_id());
-            return ResponseEntity.status(HttpStatus.OK).body("Deleted OrderFood");
-        }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-    }
+	}
 
+	@DeleteMapping("deleteOrderFood/{orderId}/{foodId}")
+	public ResponseEntity<String> deleteOrderFood(@PathVariable("orderId") Integer orderId,
+			@PathVariable Integer foodId) {
+		try {
+			ofservice.deleteOrderFood(orderId, foodId);
+			return ResponseEntity.status(HttpStatus.OK).body("Deleted OrderFood");
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		}
+		
+	}
 
-    @DeleteMapping("/deleteAllOrderFood")
-    public String deleteAllOrderFood() {
-        ofservice.deleteAllOrderFood();
-        return "Deleted all ordered foods";
-    }
+	@DeleteMapping("/deleteAllOrderFood")
+	public String deleteAllOrderFood() {
+		ofservice.deleteAllOrderFood();
+		return "Deleted all ordered foods";
+	}
 }
