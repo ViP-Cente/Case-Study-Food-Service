@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/food")
+//@RequestMapping(path = "/food")
 public class FoodController {
     @Autowired
     FoodService foodService;
 
-    @GetMapping("foodList")
+    @GetMapping("user/food/foodList")
     public ResponseEntity<List<Food>> listAllFoods(){
         return new ResponseEntity <List<Food>> ((List<Food>) foodService.getAllFoods(), HttpStatus.OK);
     }
-    @GetMapping("findFood/{foodID}")
+    @GetMapping("user/food/findFood/{foodID}")
     public ResponseEntity<?> FindByFoodId(@PathVariable int foodID) throws Exception {
         try {
             return new ResponseEntity<Food>(foodService.findByFoodId(foodID), HttpStatus.OK);
@@ -28,7 +28,7 @@ public class FoodController {
         }
     }
 
-    @PostMapping("addFood")
+    @PostMapping("admin/food/addFood")
     public ResponseEntity<?> addFood(@RequestBody Food food) throws Exception {
         try {
             return new ResponseEntity<Food>(foodService.addFood(food), HttpStatus.OK);
@@ -37,7 +37,7 @@ public class FoodController {
         }
     }
 
-    @PutMapping("updateFood")
+    @PutMapping("admin/food/updateFood")
     public ResponseEntity<?> updateFood(@RequestBody Food food) throws Exception {
         try {
             return new ResponseEntity<Food>(foodService.updateFood(food), HttpStatus.OK);
@@ -46,7 +46,7 @@ public class FoodController {
         }
     }
 
-    @DeleteMapping("deleteFood/{foodID}")
+    @DeleteMapping("admin/food/deleteFood/{foodID}")
     public ResponseEntity<?> deleteFood(@PathVariable int foodID) throws Exception {
         try {
             return new ResponseEntity<Boolean>(foodService.deleteFood(foodID), HttpStatus.OK);
@@ -54,7 +54,7 @@ public class FoodController {
             return new ResponseEntity<String>("Food not found", HttpStatus.CONFLICT);
         }
     }
-    @DeleteMapping("deleteAll")
+    @DeleteMapping("admin/food/deleteAll")
     void deleteAllFoods(){
         foodService.deleteAllFoods();
     }

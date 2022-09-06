@@ -18,7 +18,7 @@ import com.project.Service.ModeratorService;
 import com.project.model.Moderator;
 
 @RestController
-@RequestMapping(path = "/moderators")
+@RequestMapping(path = "/admin/moderators")
 public class ModeratorController {
 	@Autowired
 	ModeratorService service;

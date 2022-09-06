@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/orderFoods")
+@RequestMapping(path = "/admin/orderFoods")
 public class OrderFoodsController {
 
 	@Autowired
