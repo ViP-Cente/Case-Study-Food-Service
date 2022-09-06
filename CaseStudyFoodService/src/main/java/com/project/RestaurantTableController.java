@@ -16,7 +16,7 @@ public class RestaurantTableController {
     @Autowired
     RestaurantTableService tableService;
 
-    @RequestMapping("/getAllTables")
+    @RequestMapping("/admin/getAllTables")
     @ResponseBody
     public List<Restaurant_Table> getAllTables(){
         List<Restaurant_Table> tableList = tableService.getAllTables();

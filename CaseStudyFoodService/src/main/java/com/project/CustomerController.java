@@ -18,7 +18,7 @@ import com.project.model.Customer;
 
 
 @RestController
-@RequestMapping(path = "/customers")
+@RequestMapping(path = "/admin/customers")
 public class CustomerController {
 
 	@Autowired
