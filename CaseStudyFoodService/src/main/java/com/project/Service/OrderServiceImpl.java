@@ -1,18 +1,24 @@
 package com.project.Service;
 
+import com.project.Repository.CustomerRepository;
 import com.project.Repository.OrderRepository;
+import com.project.model.Customer;
 import com.project.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class OrderServiceImpl implements OrderService{
 
     @Autowired
     OrderRepository orderRepository;
+    
+    @Autowired
+    CustomerRepository customerRepository;
 
     @Override
     public List<Order> listAllOrders() {
@@ -81,4 +87,19 @@ public class OrderServiceImpl implements OrderService{
         orderRepository.deleteAll();
         System.out.println("Deleted all orders");
     }
+
+	@Override
+	public void addCustomerToOrder(Integer orderID, Integer customerID) throws Exception {
+		Optional<Customer> oCust = customerRepository.findById(customerID);
+		Optional<Order> oOrder = orderRepository.findById(orderID);
+		
+		if(oCust.isPresent() && oOrder.isPresent()) {
+			Customer customer = oCust.get();
+			Order order = oOrder.get();
+			
+			customer.setTableID(order.getTableID());
+		}else {
+			throw new Exception();
+		}
+	}
 }

@@ -50,7 +50,7 @@ public class RestaurantTableController {
     public ResponseEntity<String> deleteTable(@PathVariable("tableId") Integer tableId) {
         Optional<Restaurant_Table> deleteTable = tableService.getTable(tableId);
         if(deleteTable.isPresent()){
-            tableService.deleteTable(deleteTable.get().getTableId());
+            tableService.deleteTable(tableId);
             return ResponseEntity.status(HttpStatus.OK).body("Table has been deleted");
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

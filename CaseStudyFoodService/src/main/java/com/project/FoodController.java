@@ -19,6 +19,7 @@ public class FoodController {
     public ResponseEntity<List<Food>> listAllFoods(){
         return new ResponseEntity <List<Food>> ((List<Food>) foodService.getAllFoods(), HttpStatus.OK);
     }
+    
     @GetMapping("user/food/findFood/{foodID}")
     public ResponseEntity<?> FindByFoodId(@PathVariable int foodID) throws Exception {
         try {

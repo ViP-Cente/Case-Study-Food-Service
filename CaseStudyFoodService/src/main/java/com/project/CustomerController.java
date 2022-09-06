@@ -52,7 +52,7 @@ public class CustomerController {
 		}
 	}
 
-	@PostMapping("/createCustomer")
+	@PostMapping("/insertCustomer")
 	public ResponseEntity<?> createCustomer(@RequestBody Customer cust) throws Exception{
 		try {
 			return new ResponseEntity<Customer>(service.createCustomer(cust), HttpStatus.CREATED);

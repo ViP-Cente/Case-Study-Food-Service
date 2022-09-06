@@ -17,4 +17,5 @@ public interface OrderService {
     Order updateOrder(Order order) throws Exception;
     boolean deleteOrder(int orderID) throws Exception;
     void deleteAllOrders();
+    void addCustomerToOrder(Integer orderID, Integer customerID) throws Exception;
 }

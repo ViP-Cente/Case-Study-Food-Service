@@ -23,16 +23,22 @@ public class OrderFoodServiceImpl implements OrderFoodService {
     }
 
     @Override
-    public Optional<OrderFoods> getOrderFood(Integer orderId, Integer foodId) {
-        return ofRepo.findById(new OrderFoodsID(orderId, foodId));
+    public OrderFoods getOrderFood(Integer orderId, Integer foodId) throws Exception {
+    	OrderFoodsID ofID = new OrderFoodsID(orderId, foodId);
+    	if(ofRepo.findById(ofID) == null) {
+			System.out.println("Order with id = " + orderId + " with foodId = " + foodId + " could not be found");
+			throw new Exception();
+		}else {
+			return ofRepo.findById(ofID).get();
+		}
     }
 
     @Override
-    public void insertOrderFood(OrderFoods o) throws Exception {
+    public OrderFoods insertOrderFood(OrderFoods o) throws Exception {
     	OrderFoodsID ofID = new OrderFoodsID(o.getOrder_id(),o.getFood_id());
         Optional<OrderFoods> insertOrF = ofRepo.findById(ofID);
         if (!insertOrF.isPresent()) {
-            ofRepo.save(o);
+           return ofRepo.save(o);
         } else {
             throw new Exception();
         }
@@ -40,7 +46,7 @@ public class OrderFoodServiceImpl implements OrderFoodService {
     }
 
     @Override
-    public void updateOrderFood(Integer orderId, Integer foodId, OrderFoods newOrderF) throws Exception {
+    public OrderFoods updateOrderFood(Integer orderId, Integer foodId, OrderFoods newOrderF) throws Exception {
         Optional<OrderFoods> upOrF = ofRepo.findById(new OrderFoodsID(orderId, foodId));
         if (upOrF.isPresent()) {
             OrderFoods ordF = upOrF.get();
@@ -48,7 +54,7 @@ public class OrderFoodServiceImpl implements OrderFoodService {
             ordF.setFood_id(newOrderF.getFood_id());
             ordF.setQuantity(newOrderF.getQuantity());
 
-            ofRepo.save(ordF);
+            return ofRepo.save(ordF);
         } else {
            throw new Exception();
         }
@@ -56,9 +62,14 @@ public class OrderFoodServiceImpl implements OrderFoodService {
     }
 
     @Override
-    public void deleteOrderFood(Integer orderId, Integer foodId) {
-        ofRepo.deleteById(new OrderFoodsID(orderId, foodId));
-        System.out.println("Food ordered has been deleted");
+    public void deleteOrderFood(Integer orderId, Integer foodId) throws Exception {
+    	OrderFoodsID id = new OrderFoodsID(orderId, foodId);
+    	if(ofRepo.findById(id).isEmpty()) {
+			System.out.println("Order with id = " + orderId + " with foodId = " + foodId + " could not be found");
+			throw new Exception();
+		}else {
+			ofRepo.deleteById(id);
+		}
     }
 
     @Override

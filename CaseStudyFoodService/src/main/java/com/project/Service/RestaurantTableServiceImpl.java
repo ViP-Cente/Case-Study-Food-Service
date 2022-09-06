@@ -26,7 +26,7 @@ public class RestaurantTableServiceImpl implements RestaurantTableService {
 
     @Override
     public void insertTable(Restaurant_Table t) {
-        var insertEmp = tableRepo.findById(t.getTableId());
+        var insertEmp = tableRepo.findById(t.getTable_id());
         if(!insertEmp.isPresent()){
             tableRepo.save(t);
         }
@@ -38,7 +38,7 @@ public class RestaurantTableServiceImpl implements RestaurantTableService {
         var upTable = tableRepo.findById(tableId);
         if (upTable.isPresent()) {
             Restaurant_Table newTable = upTable.get();
-            newTable.setTableId(t.getTableId());
+            newTable.setTable_id(t.getTable_id());
             newTable.setTotal_price(t.getTotal_price());
 
             tableRepo.save(newTable);

@@ -1,6 +1,7 @@
 package com.project;
 
 import com.project.Service.OrderFoodService;
+import com.project.model.Customer;
 import com.project.model.OrderFoods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,45 +19,36 @@ public class OrderFoodsController {
 	OrderFoodService ofservice;
 
 	@RequestMapping("getAllOrderFoods")
-	public List<OrderFoods> getAllOrderFoods() {
-		List<OrderFoods> sList = ofservice.getAllOrderFoods();
-		System.out.println(sList);
-		return sList;
+	public ResponseEntity<List<OrderFoods>> getAllOrderFoods() {
+		return new ResponseEntity <List<OrderFoods>> ((List<OrderFoods>) ofservice.getAllOrderFoods(), HttpStatus.OK);
 	}
 
 	@RequestMapping("getOrderFood/{orderId}/{foodId}")
 	public ResponseEntity<?> getOrderFood(@PathVariable("orderId") Integer orderId, @PathVariable Integer foodId) {
-		Optional<OrderFoods> getEmp;
 		try {
-			getEmp = ofservice.getOrderFood(orderId, foodId);
-			return ResponseEntity.status(HttpStatus.OK).body(getEmp.get());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			return new ResponseEntity<String>("OrderFood not found", HttpStatus.CONFLICT);
+			return new ResponseEntity<OrderFoods>(ofservice.getOrderFood(orderId, foodId), HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<String>("Customer not found", HttpStatus.CONFLICT);
 		}
 
 	}
 
 	@PostMapping("insertOrderFood")
-	public ResponseEntity<OrderFoods> insertOrderFood(@RequestBody OrderFoods of) {
+	public ResponseEntity<?> insertOrderFood(@RequestBody OrderFoods of) {
 		try {
-			ofservice.insertOrderFood(of);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return new ResponseEntity<OrderFoods>(ofservice.insertOrderFood(of), HttpStatus.CREATED);
+		}catch(Exception e) {
+			return new ResponseEntity<String>("Customer not found", HttpStatus.CONFLICT);
 		}
-		return new ResponseEntity("Inserted orderFood: " + of, HttpStatus.OK);
 	}
 
 	@PutMapping("updateOrderFood/{orderId}/{foodId}")
 	public ResponseEntity<?> updateOrderFood(@RequestBody OrderFoods of, @PathVariable("orderId") Integer orderId,
 			@PathVariable Integer foodId) {
 		try {
-			ofservice.updateOrderFood(orderId, foodId, of);
-			return new ResponseEntity("Updated orderFood: " + of, HttpStatus.OK);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			return new ResponseEntity<String>("OrderFood not found", HttpStatus.CONFLICT);
+			return new ResponseEntity<OrderFoods>(ofservice.updateOrderFood(orderId, foodId, of), HttpStatus.OK);
+		}catch(Exception e) {
+			return new ResponseEntity<String>("Customer not found", HttpStatus.CONFLICT);
 		}
 
 	}

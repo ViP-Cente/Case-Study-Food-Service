@@ -12,9 +12,10 @@ import java.util.Optional;
 public interface OrderFoodService {
 
     List<OrderFoods> getAllOrderFoods();
-    Optional<OrderFoods> getOrderFood(Integer orderId, Integer foodId) throws Exception;
-    void insertOrderFood(OrderFoods o) throws Exception;
-    void updateOrderFood(Integer orderId, Integer foodId, OrderFoods orderFoodUpdate) throws Exception;
+    OrderFoods getOrderFood(Integer orderId, Integer foodId) throws Exception;
+    OrderFoods insertOrderFood(OrderFoods o) throws Exception;
+    OrderFoods updateOrderFood(Integer orderId, Integer foodId, OrderFoods orderFoodUpdate) throws Exception;
     void deleteOrderFood(Integer orderId, Integer foodId) throws Exception;
     void deleteAllOrderFood();
+    
 }
